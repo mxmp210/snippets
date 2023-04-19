@@ -1,27 +1,8 @@
-<style>
-.paddedSvg {
- background-color: white;
- padding: 15px;
- display: inline-block;
- text-align: center;
- box-sizing: content-box;
- margin-bottom: 15px;
- margin-top:15px;
-}
-
-.paddedSvg img {
-	max-width: 100%;
-	height: auto;
-}
-</style>
-
 ## Infrastructure overview
 The ticking application is divided into smaller services. Main application is deployed in beanstalk as shown in diagram :
 <picture class="paddedSvg">
   ![Architectural Diagram](./assets/infrastructure.svg)
 </picture>
-
-
 
 ### Components
 Main components of the application are listed below with their usage :
