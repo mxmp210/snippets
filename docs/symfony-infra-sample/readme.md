@@ -1,6 +1,27 @@
+<style>
+.paddedSvg {
+ background-color: white;
+ padding: 15px;
+ display: inline-block;
+ text-align: center;
+ box-sizing: content-box;
+ margin-bottom: 15px;
+ margin-top:15px;
+}
+
+.paddedSvg img {
+	max-width: 100%;
+	height: auto;
+}
+</style>
+
 ## Infrastructure overview
 The ticking application is divided into smaller services. Main application is deployed in beanstalk as shown in diagram :
-![Architectural Diagram](./assets/infrastructure.svg)
+<picture class="paddedSvg">
+  ![Architectural Diagram](./assets/infrastructure.svg)
+</picture>
+
+
 
 ### Components
 Main components of the application are listed below with their usage :
@@ -22,22 +43,28 @@ Main components of the application are listed below with their usage :
 Application is hosted in beanstalk and relevant gitlab pipeline would be triggered at each merge / commit action which will deploy application to relevant server and environment configured.
 
 **Pipeline overview :**
+<picture class="paddedSvg">
+  ![Pipeline Overview](./assets/pipeline-overview.svg)
+</picture>
 
-![Pipeline Overview](./assets/pipeline-overview.svg)
 
 **Beanstalk Deployment Pipeline :**
 The beanstalk pipeline is triggered when code is changed in relevant branch. The pipeline is triggered as per environment and worker uses awscli to deploy application copy to S3 and then issue deployment command to beanstalk environment.
 
 The beanstalk hooks are present in deployment hook which takes care of setting up cronjobs inside application VM.
+<picture class="paddedSvg">
+	![Beanstalk Pipeline Flow](./assets/pipeline-beanstalk.svg)
+</picture>
 
-![Beanstalk Pipeline Flow](./assets/pipeline-beanstalk.svg)
 
 **EC2 Deployment Pipeline :**
 The EC2 pipeline is triggered when code is changed in relevant branch. The pipeline is triggered as per environment and worker uses awscli / ssh access to deploy application  then issue deployment command.
 
 The EC2 is configured as per shell scripts present in scripts directory
+<picture class="paddedSvg">
+	![Beanstalk Pipeline Flow](./assets/pipeline-ec2.svg)
+</picture>
 
-![Beanstalk Pipeline Flow](./assets/pipeline-ec2.svg)
 
-** Setting up email Server **
+**Setting up email Server**
 Follow its [Documentation](./ec2-setup.md)
